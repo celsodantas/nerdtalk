@@ -1,0 +1,7 @@
+== Nerdtalk
+
+This is just an application to store suggestions about ideas and be able to vote for them.
+
+It's just a personal project.
+
+=D

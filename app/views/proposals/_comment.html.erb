@@ -1,0 +1,26 @@
+<%= form_for @proposal.comments.build, :url => proposal_comments_path(@proposal), :class => "form-horizontal"  do |c| -%>
+	<fieldset>
+		<legend>Novo Comentário:</legend>
+		<div class="control-group">
+			<label class="control-label">Email:</label>
+			<div class="controls"> 
+				
+				<div class="input-prepend">
+	              	<span class="add-on"><i class="icon-envelope"></i></span>
+					<%= c.email_field :email, :class => "span6" %>
+	            </div>
+				
+				
+			</div>
+		</div>
+	
+		<div class="control-group">
+			<label class="control-label">Comentário:</label>
+				<div class="controls">
+					<%= c.text_area :content, :class => "input-xlarge span6" %> <br/>
+				</div>
+			</div>
+			<%= c.submit "Commentar", :class => "btn" %>
+		</div>
+	</fieldset>	
+<% end -%>

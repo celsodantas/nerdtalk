@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NerdTalkPool</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<div class="container"> 
+		<div class="content">
+
+			<%= yield %>
+			<hr/>
+			<footer>
+				<div class="center">Nerd Talk @2012</div>
+			</footer>
+		</div>
+		
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+
+<script type="text/javascript">
+	$(function() {
+		$('.destroy').popover()
+	})
+</script>
+
+<div class="row">
+	<div class="span12">
+		<% if notice %>
+			<div class="alert alert-success">
+			  <%= notice %>         
+			  <a class="close" data-dismiss="alert">×</a>
+			</div>  
+		<% end -%>
+
+		<div class="page-header" id="proposal_id_<%= @proposal.id %>">
+			<p>
+				<h3><%= link_to '<< voltar', proposals_path %></h3>
+			</p>
+			<h1>	
+				<%= @proposal.title %>
+				<small>
+		          Votos: <span class="votes_count"><%= @proposal.votes %></span> | 
+		          <%= link_to 'Up',   vote_up_proposal_path(@proposal),   :remote => true %>
+		          <%= link_to 'Down', vote_down_proposal_path(@proposal), :remote => true %>
+		        </small>
+	        </h1>
+		</div>
+
+		<%= markdown(@proposal.description) %>
+
+		<%= link_to 'Edit', edit_proposal_path(@proposal), :class => "btn btn-warning btn-mini" %> 
+		<%= link_to 'Destroy', @proposal, :confirm => 'Tem certeza que quer deletar?', :method => :delete, :class => "btn btn-danger btn-mini destroy", :data => { :content => "Lembre-se: Com grandes poderes vêm grandes responsabilidades! -Tio Ben" } %> 
+
+	</div>
+</div>
+<hr/>
+<div class="row">
+	<div class="span6">
+		<legend>Commentarios (<%= @proposal.comments.count %>):</legend>
+		<% @proposal.comments.each do |comment| %>
+			<p id="comment_id_<%= comment.id %>">
+				<%= image_tag avatar_url(comment) %> <b><%= comment.email %></b> - <small><%= comment.created_at.strftime("%d/%m/%Y %H:%M") %></small>
+				<%= delete_comment_link(@proposal, comment)  %> <br/>
+				<%= comment.content %>
+			</p>
+		<% end -%>
+	</div>
+    <div class="span6 pull-right">
+		<%= render "comment" %>
+	</div>
+</div>

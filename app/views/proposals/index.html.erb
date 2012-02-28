@@ -1,0 +1,46 @@
+<div class="hero-unit">
+  <h1>Papo Nerd!</h1>
+  <p>Sugestões e comentários sobre os temas a serem apresentados pra nossa sessão de nerdisse.</p>
+      <%= link_to 'Eu quero cadastrar uma Nova ideia!', new_proposal_path, :class => "btn btn-primary" %>
+</div>
+
+
+
+<div class="row">
+    <div class="span12">
+      <% if flash[:notice] %>
+        <div class="alert-message success">
+           <%= flash[:notice] %>         
+          <a class="close" data-dismiss="alert">×</a>
+        </div>  
+      <% end -%>
+
+      <h1>E vamos às ideias!</h1>
+
+      
+
+      <div id="proposals">
+        <% @proposals.each do |proposal| %>
+          <div id="proposal_id_<%= proposal.id %>" >
+            <div class="page-header">
+              <h1>
+                <%= link_to proposal.title, proposal %>
+                <small>
+                  Votos: <span class="votes_count"><%= proposal.votes %></span> | 
+                  <%= link_to 'Up',   vote_up_proposal_path(proposal),   :remote => true %>
+                  <%= link_to 'Down', vote_down_proposal_path(proposal), :remote => true %>
+                </small>
+              </h1>
+            </div>
+
+            <%= markdown(proposal.description) %>
+
+            <h6 class="comments"> comentários: <%= proposal.comments.count %> </h6>  
+          </div>
+        <% end %>
+      </div>
+    </div>
+</div>
+
+
+
